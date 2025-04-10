@@ -33,6 +33,7 @@ enum Contract {
   case One(currency: Currency)
   case Many(amount: Amount, contract: Contract)
   case Then(date: Date, contract: Contract)
+  // And(c1, And(c2, c3)) =...= And(And(c1, c2), c3)
   case And(contract1: Contract, contract2: Contract)
 }
 
