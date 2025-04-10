@@ -1,4 +1,4 @@
-# JavaLand 2025 - Funktionale Programmierung mit Scala 
+# Financial Contracts
 
 ## Technische Vorbereitung
 
