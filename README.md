@@ -16,3 +16,9 @@ dafür folgendes machen:
 https://code.visualstudio.com/docs/setup/mac#_command-line
 
 In VSCode die Extension "Metals" installieren.
+
+Dann:
+
+```
+sbt new scala/scala3.g8
+```
