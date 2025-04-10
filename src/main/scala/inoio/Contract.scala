@@ -31,6 +31,11 @@ enum Currency {
 enum Direction {
   case Long
   case Short
+  def invert: Direction =
+    this match {
+      case Long => Short
+      case Short => Long
+    }
 }
 import Direction._
 
@@ -74,6 +79,8 @@ case class Payment(direction: Direction, date: Date,
   def scale(factor: Amount): Payment =
     this.copy(amount = this.amount * factor)
 
+  def invert: Payment = this.copy(direction = direction.invert)
+
 }
 
 // Semantik
@@ -89,7 +96,9 @@ def meaning(contract: Contract, today: Date): (List[Payment], Contract) =
     case Many(amount, contract) =>
       val (payments, residual) = meaning(contract, today)
       (payments.map(_.scale(amount)), residual)
-    case Neg(contract) => ???
+    case Neg(contract) =>
+      val (payments, residual) = meaning(contract, today)
+      (p)
     case One(currency) => ???
     case Then(date, contract) => ???
   }
