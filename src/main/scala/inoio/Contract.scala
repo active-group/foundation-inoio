@@ -17,7 +17,10 @@ package inoio
  * "Am 24.12.2025 bekomme ich 100€ und ich zahle 100GBP."
  */
 
-case class Date(iso: String)
+case class Date(iso: String) {
+  def isBeforeOrEqual(other: Date): Boolean =
+    this.iso <= other.iso
+}
 
 type Amount = Double
 
@@ -98,6 +101,8 @@ def meaning(contract: Contract, today: Date): (List[Payment], Contract) =
     case Neg(contract) =>
       val (payments, residual) = meaning(contract, today)
       (payments.map(_.invert), residual)
-    case One(currency) => ???
-    case Then(date, contract) => ???
+    case One(currency) =>
+      (List(Payment(Long, today, 1, currency)), Zero)
+    case Then(date, contract) =>
+      if ()
   }
