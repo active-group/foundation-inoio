@@ -109,3 +109,5 @@ def meaning(contract: Contract, today: Date): (List[Payment], Contract) =
       else 
         (List.empty, contract)
   }
+
+val c3 = Many(50, And(One(EUR), Then(Date("2024-12-24"), One(EUR))))
