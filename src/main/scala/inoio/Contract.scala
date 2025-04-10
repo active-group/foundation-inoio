@@ -62,6 +62,12 @@ object Contract {
       case (_, Zero) => contract1
       case _ => And(contract1, contract2)
     }
+  
+  def many(amount: Amount, contract: Contract): Contract =
+    contract match {
+      case Zero => Zero
+      case _ => Many(amount, Zero)
+    }
 }
 
 import Contract._
