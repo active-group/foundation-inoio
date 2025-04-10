@@ -80,7 +80,6 @@ case class Payment(direction: Direction, date: Date,
     this.copy(amount = this.amount * factor)
 
   def invert: Payment = this.copy(direction = direction.invert)
-
 }
 
 // Semantik
@@ -98,7 +97,7 @@ def meaning(contract: Contract, today: Date): (List[Payment], Contract) =
       (payments.map(_.scale(amount)), residual)
     case Neg(contract) =>
       val (payments, residual) = meaning(contract, today)
-      (p)
+      (payments.map(_.invert), residual)
     case One(currency) => ???
     case Then(date, contract) => ???
   }
