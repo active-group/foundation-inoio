@@ -10,6 +10,11 @@ package inoio
  *    - Währung: "Ich bekomme 1€ jetzt."
  *    - "Many": "Ich bekomme 100€ jetzt."
  *    - "Then"
+ *    ... und Kombinatoren finden
+ * ... und von vorn   
+ *
+ * Currency swap:
+ * "Am 24.12.2025 bekomme ich 100€ und ich zahle 100GBP."
  */
 
 case class Date(iso: String)
@@ -28,6 +33,7 @@ enum Contract {
   case One(currency: Currency)
   case Many(amount: Amount, contract: Contract)
   case Then(date: Date, contract: Contract)
+  case And(contract1: Contract, contract2: Contract)
 }
 
 import Contract._
