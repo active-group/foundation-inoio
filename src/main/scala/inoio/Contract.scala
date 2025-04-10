@@ -52,7 +52,10 @@ enum Contract {
   case Zero // neutrale Element: Monoid
   case Neg(contract: Contract)
 
-  // smart constructor
+}
+
+object Contract {
+    // smart constructor
   def and(contract1: Contract, contract2: Contract): Contract =
     (contract1, contract2) match {
       case (Zero, _) => contract2
@@ -60,7 +63,6 @@ enum Contract {
       case _ => And(contract1, contract2)
     }
 }
-
 
 import Contract._
 import Currency._
