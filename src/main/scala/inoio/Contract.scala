@@ -66,7 +66,7 @@ object Contract {
   def many(amount: Amount, contract: Contract): Contract =
     contract match {
       case Zero => Zero
-      case _ => Many(amount, Zero)
+      case _ => Many(amount, contract)
     }
 }
 
