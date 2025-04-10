@@ -103,7 +103,7 @@ def meaning(contract: Contract, today: Date): (List[Payment], Contract) =
     case And(contract1, contract2) => 
       val (payments1, residual1) = meaning(contract1, today)
       val (payments2, residual2) = meaning(contract2, today)
-      (payments1 ++ payments2, And(residual1, residual2))
+      (payments1 ++ payments2, and(residual1, residual2))
     case Many(amount, contract) =>
       val (payments, residual) = meaning(contract, today)
       (payments.map(_.scale(amount)), Many(amount, residual))
