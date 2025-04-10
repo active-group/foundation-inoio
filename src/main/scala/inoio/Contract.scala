@@ -75,4 +75,15 @@ case class Payment(direction: Direction, date: Date,
 // Semantik
 // Syntax |-> Bedeutung
 // Zahlungen bis heute, raus: Residualvertrag
-def meaning(contract: Contract, today: Date): (List[Payment], Contract) = ???
+def meaning(contract: Contract, today: Date): (List[Payment], Contract) =
+  contract match {
+    case Zero => (List.empty, Zero)
+    case And(contract1, contract2) => 
+      val (payments1, residual1) = meaning(contract1, today)
+      val (payments2, residual2) = meaning(contract2, today)
+      (payments1 ++ payments2, And(residual1, residual2))
+    case Many(amount, contract) => ???
+    case Neg(contract) => ???
+    case One(currency) => ???
+    case Then(date, contract) => ???
+  }
