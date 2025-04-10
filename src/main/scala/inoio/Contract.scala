@@ -69,6 +69,9 @@ def zeroCouponBond(date: Date, amount: Amount, currency: Currency): Contract =
 
 val zcb1 = zeroCouponBond(Date("2025-12-24"), 100, EUR)
 
+case class Payment(direction: Direction, date: Date,
+                   amount: Amount, currency: Currency)
+
 // Semantik
 // Syntax |-> Bedeutung
 def meaning(contract: Contract): List[Payment] = ???
