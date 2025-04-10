@@ -103,6 +103,9 @@ def meaning(contract: Contract, today: Date): (List[Payment], Contract) =
       (payments.map(_.invert), residual)
     case One(currency) =>
       (List(Payment(Long, today, 1, currency)), Zero)
-    case Then(date, contract) =>
-      if ()
+    case Then(date, contract1) =>
+      if date.isBeforeOrEqual(today)
+      then meaning(contract1, today)
+      else 
+        (List.empty, contract)
   }
