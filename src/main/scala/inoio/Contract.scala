@@ -28,6 +28,12 @@ enum Currency {
   case YEN
 }
 
+enum Direction {
+  case Long
+  case Short
+}
+import Direction._
+
 enum Contract {
   // case ZeroCouponBond(date: Date, amount: Amount, currency: Currency)
   case One(currency: Currency)
@@ -35,6 +41,7 @@ enum Contract {
   case Then(date: Date, contract: Contract)
   // And(c1, And(c2, c3)) =...= And(And(c1, c2), c3)
   case And(contract1: Contract, contract2: Contract)
+  case Neg(contract: Contract)
 }
 
 import Contract._
@@ -42,6 +49,15 @@ import Currency._
 
 // "Ich bekomme 1€ jetzt."
 val c1 = One(EUR)
+
+// "Ich zahle 1€ jetzt."
+val c2 = Neg(c1)
+
+// "Ich bekomme 1€ jetzt."
+// val c3 = Dir(Long, c1)
+
+// "Ich bekomme 1€."
+// val c4 = Dir(Short, c2)
 
 // val zcb1 = Then(Date("2025-12-24"), Many(100, One(EUR)))
 
@@ -51,3 +67,4 @@ def zeroCouponBond(date: Date, amount: Amount, currency: Currency): Contract =
   Then(date, Many(amount, One(currency)))
 
 val zcb1 = zeroCouponBond(Date("2025-12-24"), 100, EUR)
+
