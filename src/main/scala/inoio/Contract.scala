@@ -74,4 +74,5 @@ case class Payment(direction: Direction, date: Date,
 
 // Semantik
 // Syntax |-> Bedeutung
-def meaning(contract: Contract): List[Payment] = ???
+// Zahlungen bis heute, raus: Residualvertrag
+def meaning(contract: Contract, today: Date): (List[Payment], Contract) = ???
