@@ -70,7 +70,11 @@ def zeroCouponBond(date: Date, amount: Amount, currency: Currency): Contract =
 val zcb1 = zeroCouponBond(Date("2025-12-24"), 100, EUR)
 
 case class Payment(direction: Direction, date: Date,
-                   amount: Amount, currency: Currency)
+                   amount: Amount, currency: Currency) {
+  def scale(factor: Amount): Payment =
+    this.copy(amount = this.amount * factor)
+
+}
 
 // Semantik
 // Syntax |-> Bedeutung
@@ -82,7 +86,9 @@ def meaning(contract: Contract, today: Date): (List[Payment], Contract) =
       val (payments1, residual1) = meaning(contract1, today)
       val (payments2, residual2) = meaning(contract2, today)
       (payments1 ++ payments2, And(residual1, residual2))
-    case Many(amount, contract) => ???
+    case Many(amount, contract) =>
+      val (payments, residual) = meaning(contract, today)
+      (payments.map { payment => })
     case Neg(contract) => ???
     case One(currency) => ???
     case Then(date, contract) => ???
